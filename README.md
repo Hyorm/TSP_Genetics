@@ -7,9 +7,7 @@ src ----- tsp ----- main ---------- Main.java
               |          |
               |          ---------- Parser.java
               |
-              ----- evolution ----- Node.java
-              |               |
-              |               ----- Path.java
+              ----- evolution ----- Path.java
               |               |
               |               ----- Generation.java
               |               |
