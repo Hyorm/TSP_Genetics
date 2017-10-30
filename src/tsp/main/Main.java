@@ -9,13 +9,15 @@ public class Main{
 		
 		String str = "";
 		
-		int[][] arr = new int[48][48];
+		Integer[][] arr = new Integer[48][48];
 
 		try{
 
 			str = (ReadFile.readFile(args[0]));
-			//System.out.println(str);
-			arr = Parser.setNode(str);
+
+			arr = MakeNode.setNode(str);
+
+			MakeNode.printNode(arr);
 
 		}catch(Exception e){
 	

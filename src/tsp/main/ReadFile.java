@@ -16,12 +16,14 @@ public class ReadFile{
 
 		int i = 0;
 
-		while((line = br.readLine()) != null){
+		while((line = br.readLine()) != null){	
+		
 			if(i>=7)	
 				sb.append(line);
 			i++;
 
 		}
+		
 		return sb.toString();
 
 	}
