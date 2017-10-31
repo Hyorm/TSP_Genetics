@@ -15,7 +15,7 @@ public class Main{
 	
 		Set<Integer[]> sequence = new HashSet<Integer[]>();
 
-		Path path_1 = new Path();
+		Generation generation = new Generation();
 
 		try{
 
@@ -25,16 +25,14 @@ public class Main{
 			
 			sequence = MakeSequence.makeSequence();
 		
+			int i = 0;
+
 			for(Integer[] num: sequence){
 				
-				//for (int i = 0; i < 48; i++)
-				//	System.out.println(num[i]+" ");
-
-				path_1 = new Path(arr, num);
-				break;				
+				generation = new Generation(new Path(arr, num));
 			}
 
-			System.out.println(path_1.getWeight());
+			System.out.println(generation.getMinWeight());
 
 		}catch(Exception e){
 	
