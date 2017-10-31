@@ -6,6 +6,8 @@ src ----- tsp ----- main ---------- Main.java
               |          ---------- ReadFile.java
               |          |
               |          ---------- MakeNode.java
+              |          |
+              |          ---------- MakeSequence.java
               |
               ----- evolution ----- Path.java
               |               |
