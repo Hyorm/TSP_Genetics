@@ -47,18 +47,6 @@ public class MakeNode{
 
 	}
 
-	public static void printNode(Integer[][] node){
-
-		for (int i = 0; i < node.length; i++) {
-                         System.out.println();
-                        for (int j = 0; j < node[i].length; j++) {
-                                System.out.print(node[i][j] + " ");
-                      }
-                }
-		System.out.println();
-
-	}
-
 	public static Integer[] element(String str) throws Exception{
 
 		String[] sub = str.split(" ");

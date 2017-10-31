@@ -17,7 +17,7 @@ public class Main{
 
 			arr = MakeNode.setNode(str);
 
-			MakeNode.printNode(arr);
+			
 
 		}catch(Exception e){
 	
