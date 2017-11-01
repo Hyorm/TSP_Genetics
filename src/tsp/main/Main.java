@@ -13,9 +13,11 @@ public class Main{
 		
 		Integer[][] arr = new Integer[48][48];
 	
-		Set<Integer[]> sequence = new HashSet<Integer[]>();
+		HashSet<Integer[]> sequence = new HashSet<Integer[]>();
 
 		Generation generation = new Generation();
+
+		Generation nextGeneration = new Generation();
 
 		Path[] path = new Path[100];
 
@@ -30,20 +32,22 @@ public class Main{
 			int i = 0;
 
 			for(Integer[] num: sequence){
-				
-				path[i] = new Path(arr, num);
 
+				path[i] = new Path(arr, num);
 				i++;
 			}
-
+						
 			generation.setGeneration(path);
 
-			System.out.println(generation.getMinWeight());
+			System.out.println(generation.getAllWeight()/100);
+
+			nextGeneration = new Evolution(generation, arr).getEvolution();
+
+			System.out.println(nextGeneration.getAllWeight()/140);
 
 		}catch(Exception e){
 	
 			System.out.println("File Name Error");
-
 		}
 	}
 }

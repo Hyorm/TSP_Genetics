@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Generation{
 
-	protected HashMap<Integer, Path> generation = new HashMap();
+	protected HashMap<Integer, Path> generation = new HashMap<Integer, Path>();
 
 	protected Integer generationNum = 0;
 
@@ -18,7 +18,7 @@ public class Generation{
 	public Generation(Path path){
 
 		this.generation.put(generationNum, path);
-	
+		
 		this.allWeight += path.getWeight();
 		
 		this.minWeight = path.getWeight();
@@ -33,7 +33,7 @@ public class Generation{
 
 		for( i = 0; i < path.length;i++){
 
-			this.generation.put(generationNum, path[i]);
+			this.generation.put(generationNum + i, path[i]);
 
 			this.allWeight += path[i].getWeight();
 
@@ -52,7 +52,7 @@ public class Generation{
 	public void setGeneration(Path path){
 
 		this.generation.put(generationNum, path);
-
+		
 		this.allWeight += path.getWeight();
 
 		if(this.minWeight>path.getWeight())
@@ -67,8 +67,8 @@ public class Generation{
 
 		for( i = 0; i < path.length; i++){
 
-			this.generation.put(generationNum, path[i]);
-			
+			this.generation.put(generationNum +i, path[i]);
+
 			this.allWeight += path[i].getWeight();
 
 			if(this.minWeight == 0)
@@ -83,9 +83,9 @@ public class Generation{
 		this.generationNum += i;
 	}
 
-	public HashMap<Integer, Path> getGeneration(int gen){
+	public Path getPath(Integer gen){
 
-		return this.generation;
+		return this.generation.get(gen);
 	}
 	
 	public Integer getAllWeight(){

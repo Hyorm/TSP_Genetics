@@ -7,15 +7,19 @@ public class MakeSequence{
 
 	public static final int seqNum = 48;
 	
-	public static Set<Integer[]> makeSequence(){
+	public static HashSet<Integer[]> makeSequence(){
 
-		Set<Integer[]> sequence = new HashSet<Integer[]>();
+		HashSet<Integer[]> sequence = new HashSet<Integer[]>();
 
 		for(int i = 0;i<100; i++){
 	
+			boolean y;
+
 			try{
 
-				sequence.add(randElement(seqNum));					
+				y = sequence.add(randElement(seqNum));
+				if(y == false)
+					i--;					
 
 			}catch(Exception e){
 
@@ -27,13 +31,13 @@ public class MakeSequence{
 		return sequence;
 	}
 
-	public static Integer[] randElement(int num) throws Exception{
+	public static Integer[] randElement(int num_r) throws Exception{
 
-		Integer[] randNum = new Integer[num];
+		Integer[] randNum = new Integer[num_r];
 	
-		for(int i = 0; i < num; i++){
+		for(int i = 0; i < num_r; i++){
 
-			randNum[i] = (int)(Math.random()*(num));
+			randNum[i] = (int)(Math.random()*(num_r));
 			
 			for(int j = 0; j < i; j++){
 
