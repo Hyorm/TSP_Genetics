@@ -18,21 +18,50 @@ public class Generation{
 	public Generation(Path path){
 
 		this.generation.put(generationNum, path);
+	
+		this.allWeight += path.getWeight();
+		
+		this.minWeight = path.getWeight();
+
+		this.generationNum++;
+	
+	}
+
+	public Generation(Path[] path){
+
+		int i;
+
+		for( i = 0; i < path.length;i++){
+
+			this.generation.put(generationNum, path[i]);
+
+			this.allWeight += path[i].getWeight();
+
+			if(this.minWeight == 0)
+				this.minWeight = path[i].getWeight();
+			else{
+
+				if(this.minWeight>path[i].getWeight())
+					this.minWeight = path[i].getWeight();
+			}
+		}
+
+		this.generationNum += i;
+	}
+
+	public void setGeneration(Path path){
+
+		this.generation.put(generationNum, path);
 
 		this.allWeight += path.getWeight();
 
-		if(this.minWeight == 0)
+		if(this.minWeight>path.getWeight())
 			this.minWeight = path.getWeight();
-		else{
-
-			if(this.minWeight>path.getWeight())
-				this.minWeight = path.getWeight();
-		}
 
 		this.generationNum++;
 	}
 
-	public Generation(Path[] path){
+	public void setGeneration(Path[] path){
 
 		int i;
 

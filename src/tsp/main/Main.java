@@ -17,6 +17,8 @@ public class Main{
 
 		Generation generation = new Generation();
 
+		Path[] path = new Path[100];
+
 		try{
 
 			str = (ReadFile.readFile(args[0]));
@@ -29,8 +31,12 @@ public class Main{
 
 			for(Integer[] num: sequence){
 				
-				generation = new Generation(new Path(arr, num));
+				path[i] = new Path(arr, num);
+
+				i++;
 			}
+
+			generation.setGeneration(path);
 
 			System.out.println(generation.getMinWeight());
 
