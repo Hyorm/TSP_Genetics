@@ -13,14 +13,8 @@ src ----- tsp ----- main ---------- Main.java
               |               |
               |               ----- Generation.java
               |               |
-              |               ----- Cross-over.java
-              |               |
-              |               ----- Mutation.java
-              |               |
-              |               ----- Immigration.java
-              |               |
-              |               ----- Selection.java
-              |
+              |               ----- Evolution.java
+              |               
               ----- gui ----------- ShowData.java
               
 <b>ANT</b>
