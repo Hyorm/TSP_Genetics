@@ -1,6 +1,7 @@
 package tsp.main;
 
 import tsp.evolution.*;
+import tsp.gui.*;
 
 import java.awt.*;
 import java.util.*;
@@ -15,9 +16,7 @@ public class Main{
 	
 		HashSet<Integer[]> sequence = new HashSet<Integer[]>();
 
-		Generation generation = new Generation();
-
-		Generation nextGeneration = new Generation();
+		Generation[] allGeneration = new Generation[100];
 
 		Path[] path = new Path[100];
 
@@ -37,24 +36,19 @@ public class Main{
 				i++;
 			}
 						
-			generation.setGeneration(path);
+			allGeneration[0] = new Generation(path);
+			
+			for(int j =1; j<100; j++){
+			
+				 allGeneration[j] = new Evolution(allGeneration[j-1], arr).getEvolution();
+			}
+	
+			ShowData dataHist= new ShowData(allGeneration);
+			
+			dataHist.showMinWeight();
+			
+			dataHist.showAllWeight();				
 
-			System.out.println(generation.getAllWeight()/100);
-
-			nextGeneration = new Evolution(generation, arr).getEvolution();
-
-			System.out.println(nextGeneration.getPath(50).getWeight());
-
-			System.out.println(nextGeneration.getPath(99).getWeight());
-
-			Integer[] se = nextGeneration.getPath(90).getSequence();
-
-	                for(int k = 0; i < k; k++){
-	                        for(int j =0; j<i; j++){
-	                                if(se[k]==se[j])
-      		                                System.out.println("invalid");
-   	    	                }
-	       	        }
 
 		}catch(Exception e){
 	
