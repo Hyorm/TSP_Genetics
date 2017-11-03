@@ -13,6 +13,8 @@ public class Evolution{
 
 	protected Generation nextGeneration = new Generation();
 	
+	protected Generation selectGeneration = new Generation();
+
 	protected Integer[][] node = new Integer[seq][seq];
 
 	public Evolution(){}
@@ -31,11 +33,13 @@ public class Evolution{
 
 		nextGeneration.setGeneration(getImmigration());
 
+		selectGeneration.setGeneration(getSelect());
+
 	}
 
 	public Generation getEvolution(){
 
-		return this.nextGeneration;
+		return this.selectGeneration;
 
 	}
 
@@ -226,5 +230,72 @@ public class Evolution{
 		}
 
 		return nextPath;
+	}
+
+	public Path[] getSelect(){
+
+		Path[] oldGen = new Path[200];
+		Path[] newGen = new Path[100];
+		Path[] sortedGen = new Path[200];
+		Integer[] randGenNum = new Integer[50];
+		for(int i =0; i<200;i++){
+			oldGen[i] = this.nextGeneration.getPath(i);
+		}
+
+		sortedGen = selSort(oldGen);
+
+		randGenNum = randG(50);
+
+		for(int i=0; i<100; i++){
+
+			if(i<50)
+				newGen[i] = sortedGen[i];
+			else
+				newGen[i] = oldGen[randGenNum[i-50]];
+		}	
+
+		return newGen;
+	}
+	
+	public Path[] selSort(Path[] path){
+
+		Integer indexMin;
+		Path tmp = new Path();
+		
+		for(int i = 0; i < path.length-1; i++){
+
+			indexMin = i;
+			        for (int j = i + 1; j < path.length; j++) {
+					if (path[j].getWeight() < path[indexMin].getWeight()) {
+						indexMin = j;
+				}			
+			}
+ 			tmp = path[indexMin];
+			path[indexMin] = path[i];
+			path[i] = tmp;
+		}
+
+		return path;
+	}
+
+	public Integer[] randG(int n){
+
+		Integer[] randNum = new Integer[n]; 
+ 	 
+ 		for(int i = 0; i < n; i++){ 
+ 
+ 			randNum[i] = (int)(Math.random()*200); 
+ 			 
+ 			for(int j = 0; j < i; j++){ 
+ 
+ 				if(randNum[i] == randNum[j]){ 
+ 					i--; 
+ 					break; 
+ 				} 
+ 			} 
+ 		} 
+ 
+ 
+ 		return randNum; 
 	}
 }

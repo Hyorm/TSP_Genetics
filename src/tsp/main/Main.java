@@ -43,7 +43,18 @@ public class Main{
 
 			nextGeneration = new Evolution(generation, arr).getEvolution();
 
-			System.out.println(nextGeneration.getPath(170).getWeight());
+			System.out.println(nextGeneration.getPath(50).getWeight());
+
+			System.out.println(nextGeneration.getPath(99).getWeight());
+
+			Integer[] se = nextGeneration.getPath(90).getSequence();
+
+	                for(int k = 0; i < k; k++){
+	                        for(int j =0; j<i; j++){
+	                                if(se[k]==se[j])
+      		                                System.out.println("invalid");
+   	    	                }
+	       	        }
 
 		}catch(Exception e){
 	
