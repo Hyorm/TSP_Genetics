@@ -28,48 +28,47 @@ public class ShowData{
 	
 	public void showMinWeight() {
 
-		ApplicationFrame frame = new ApplicationFrame("Min") ; 
+		ApplicationFrame frame = new ApplicationFrame("Min"); 
  
- 		double [] minWeight = new double[100] ; 
+ 		double [] minWeight = new double[100]; 
  	 
  		int i = 0; 
 		for(Generation gen : this.allGeneration){ 
  			minWeight[i] = gen.getMinWeight(); 
  			i++; 
  		}
- 		HistogramDataset dataset = new HistogramDataset() ; 
- 		dataset.setType(HistogramType.RELATIVE_FREQUENCY) ; 
- 		dataset.addSeries("Histogram", minWeight, 100) ; 
+ 		HistogramDataset dataset = new HistogramDataset(); 
+ 		dataset.setType(HistogramType.RELATIVE_FREQUENCY); 
+ 		dataset.addSeries("Histogram", minWeight, 10); 
  		JFreeChart chart = ChartFactory.createHistogram("Generation Min Weight", 
- 		        "Weight", "Generation", dataset, PlotOrientation.VERTICAL, false, false, false) ; 
- 		JPanel panel = new ChartPanel(chart) ; 
- 		frame.setContentPane(panel) ; 
- 		frame.pack() ; 
- 		frame.setVisible(true) ; 
- 
+ 		        "Weight", "Generation", dataset, PlotOrientation.VERTICAL, false, false, false);  
+		JPanel panel = new ChartPanel(chart);
+ 		frame.setContentPane(panel); 
+ 		frame.pack(); 
+ 		frame.setVisible(true); 
  
  	} 
 
         public void showAllWeight() {
 
-                ApplicationFrame frame = new ApplicationFrame("All") ;
+                ApplicationFrame frame = new ApplicationFrame("All");
 
-                double [] allWeight = new double[100] ;
+                double [] allWeight = new double[100];
 
                 int i = 0;
                 for(Generation gen : this.allGeneration){
                	       	allWeight[i] = gen.getAllWeight();
                        	i++;
 		}
-                HistogramDataset dataset = new HistogramDataset() ;
-                dataset.setType(HistogramType.RELATIVE_FREQUENCY) ;
-                dataset.addSeries("Histogram", allWeight, 100) ;
+                HistogramDataset dataset = new HistogramDataset();
+                dataset.setType(HistogramType.RELATIVE_FREQUENCY);
+                dataset.addSeries("Histogram", allWeight, 100);
                 JFreeChart chart = ChartFactory.createHistogram("Generation All Weight",
-                        "Weight", "Generation", dataset, PlotOrientation.VERTICAL, false, false, false) ;
-                JPanel panel = new ChartPanel(chart) ;
-                frame.setContentPane(panel) ;
-                frame.pack() ;
-                frame.setVisible(true) ;
+                        "Weight", "Generation", dataset, PlotOrientation.VERTICAL, false, false, false);
+                JPanel panel = new ChartPanel(chart);
+                frame.setContentPane(panel);
+                frame.pack();
+                frame.setVisible(true);
 
 
         }

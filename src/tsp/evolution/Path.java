@@ -17,6 +17,16 @@ public class Path{
 
 		this.sequence = setSequence;
 
+		for(int i=0; i < 48; i++){
+
+			for(int j =0; j<i; j++){
+
+				if(setSequence[i]==setSequence[j])
+					System.out.println("invalid");
+
+			}
+		}
+
 		for(int i = 0; i<nodeNum ; i++){
 			
 			if((i+1)>47)

@@ -25,7 +25,7 @@ public class Main{
 			str = (ReadFile.readFile(args[0]));
 
 			arr = MakeNode.setNode(str);
-			
+	
 			sequence = MakeSequence.makeSequence(100);
 		
 			int i = 0;
@@ -42,12 +42,18 @@ public class Main{
 			
 				 allGeneration[j] = new Evolution(allGeneration[j-1], arr).getEvolution();
 			}
+
+			for(int j =0; j<100; j++){
+
+				System.out.println(j+" Generation Min Weight: "+ allGeneration[j].getMinWeight());
+
+			}
 	
-			ShowData dataHist= new ShowData(allGeneration);
+//			ShowData dataHist= new ShowData(allGeneration);
 			
-			dataHist.showMinWeight();
+//			dataHist.showMinWeight();
 			
-			dataHist.showAllWeight();				
+//			dataHist.showAllWeight();				
 
 
 		}catch(Exception e){
