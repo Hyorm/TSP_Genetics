@@ -27,7 +27,7 @@ public class Main{
 
 			arr = MakeNode.setNode(str);
 			
-			sequence = MakeSequence.makeSequence();
+			sequence = MakeSequence.makeSequence(100);
 		
 			int i = 0;
 
@@ -43,7 +43,7 @@ public class Main{
 
 			nextGeneration = new Evolution(generation, arr).getEvolution();
 
-			System.out.println(nextGeneration.getAllWeight()/140);
+			System.out.println(nextGeneration.getPath(170).getWeight());
 
 		}catch(Exception e){
 	

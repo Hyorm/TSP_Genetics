@@ -55,7 +55,9 @@ public class Evolution{
 
 		Integer[] halfSequence = new Integer[seq/2];
 
-		Integer[] oldSequence = new Integer[seq];
+		Integer[] oldSequence1 = new Integer[seq];
+		
+		Integer[] oldSequence2 = new Integer[seq];
 
 		Integer[] nextSequence = new Integer[seq];	
 
@@ -86,34 +88,45 @@ public class Evolution{
 
 		} 
 
-		oldSequence = this.oldGeneration.getPath(num[0]).getSequence();
+		oldSequence1 = this.oldGeneration.getPath(num[0]).getSequence();
 
 		for(int i = 0; i < seq/2; i++){
-				
-			nextSequence[halfSequence[i]] = oldSequence[halfSequence[i]];
 
-		}
+			for(int j=0; j<seq;j++){
+				if(oldSequence1[j]==halfSequence[i]){
 
-		oldSequence = this.oldGeneration.getPath(num[1]).getSequence();
-
-		for(int i = 0; i < seq; i++){
-
-			for(int j = 0 ; j < seq ; j++){
-
-				for(int k = 0; k < seq ; k++){
-
-					if(nextSequence[i] == null && nextSequence[k] != oldSequence[j]){
-						
-						nextSequence[i] = oldSequence[j];
-						break;
-						
-					}	
+					nextSequence[j] = oldSequence1[j];
+					//System.out.println(j+">"+nextSequence[j]);
 				}
-
-				if(nextSequence[i] !=null) break;
 			}
 		}
 
+		oldSequence2 = this.oldGeneration.getPath(num[1]).getSequence();
+
+		int old2Num=0;
+
+		for(int i=0; i < seq; i++){
+
+			if(nextSequence[i]==null){
+
+					for(int j=0; j<seq; j++){
+	
+						if(oldSequence2[old2Num]==nextSequence[j]){
+							old2Num++;
+							j=-1;
+						}
+					}
+					nextSequence[i] = oldSequence2[old2Num];
+				
+			}
+		}
+		for(int i = 0; i < seq; i++){
+                        for(int j =0; j<i; j++){
+                                if(nextSequence[i]==nextSequence[j])
+                                        System.out.println("invalid");
+                        }
+                }
+	
 		nextPath = new Path(this.node, nextSequence);
  
 		return nextPath;
@@ -122,7 +135,6 @@ public class Evolution{
 	public Path[] getMutation(){
 
 		Path path[] = new Path[20];
-
 		for(int i = 0; i<20 ; i++){
 
 			path[i] = makeMutation();
@@ -136,7 +148,7 @@ public class Evolution{
 
 		Path nextPath = new Path();
 
-		int changeNode = (int)(Math.random()*48);
+		int changeNode = (int)(Math.random()*47)+1;
 
 		Integer changePath = (int)(Math.random()*48);
 
@@ -145,6 +157,8 @@ public class Evolution{
 		Integer[] oldSequence = new Integer[48];
 
 		Integer[] nextSequence = new Integer[48];
+
+		Integer[] sequenceCH = new Integer[changeNode];
 
 		for(int i = 0; i < changeNode ; i++){ 
  	 
@@ -156,23 +170,39 @@ public class Evolution{
   					i--;  
   					break;  
   				}  
-			}  
+			} 
  		} 
+		for(int i = 0; i < changeNode ; i++){
+
+			sequenceCH[i] = (int)(Math.random()*changeNode);
+
+			for(int j = 0; j < i; j++){
+	
+				if(sequenceCH[i] == sequenceCH[j]){
+					i--;
+					break;
+				}
+			}
+		}
+
+		
 
 		oldSequence = this.oldGeneration.getPath(changePath).getSequence();
 		
-		for(int i = 0; i< 48; i++){
+		for(int i = 0; i < changeNode; i++){
 				
-			for(int j = 0; j < changeNode; j++){
-
-				if(i == changeSequence[j])
-					nextSequence[i] = changeSequence[j];
-				else
-					nextSequence[i] = oldSequence[i];
-
-			}
+			nextSequence[changeSequence[i]] = oldSequence[changeSequence[sequenceCH[i]]];
+			
 		}
-		
+
+		for(int i = 0; i< 48; i++){
+
+			if(nextSequence[i]==null){
+				nextSequence[i] = oldSequence[i];				
+			}
+
+		}	
+
 		nextPath = new Path(this.node, nextSequence);
 
 		return nextPath;
@@ -191,11 +221,9 @@ public class Evolution{
 		for(Integer[] sNum: sequence){
 		
 			nextPath[i] = new Path(this.node, sNum);
-			System.out.println(i+"num"+nextPath[i].getWeight());	
+
 			i++;
 		}
-
-		System.out.println("new"+nextPath[39].getWeight());
 
 		return nextPath;
 	}

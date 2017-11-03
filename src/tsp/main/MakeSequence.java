@@ -7,11 +7,11 @@ public class MakeSequence{
 
 	public static final int seqNum = 48;
 	
-	public static HashSet<Integer[]> makeSequence(){
+	public static HashSet<Integer[]> makeSequence(int sequenceNum){
 
 		HashSet<Integer[]> sequence = new HashSet<Integer[]>();
 
-		for(int i = 0;i<100; i++){
+		for(int i = 0;i<sequenceNum; i++){
 	
 			boolean y;
 
