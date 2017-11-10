@@ -31,7 +31,7 @@ class MultiThread extends Thread{
 
 			long endTime = System.currentTimeMillis();
 
-			if((endTime - now)/1000==10) break;
+			if((endTime - now)/1000==30) break;
 
 			se = MakeSequence.makeSequence(1);
 			
@@ -45,7 +45,7 @@ class MultiThread extends Thread{
 
 			generath++;
 		}
-		System.out.println(generath+"Randome Generation Min Weight: "+ minPath.getWeight());
+		System.out.println(generath+" Randome Generation Min Weight: "+ minPath.getWeight());
 	}
 }
 
@@ -91,7 +91,7 @@ public class Main{
 					
 				long endTime = System.currentTimeMillis();
 
-				if((endTime - startTime)/1000==10) break;
+				if((endTime - startTime)/1000==30) break;
 				
 				if(j == 1){
 					allGeneration[j] = new Evolution(allGeneration[j-1], arr).getEvolution();
@@ -107,10 +107,11 @@ public class Main{
 				
 				generationNum++;
 
+				System.out.println(generationNum+" Generation Min Weight: "+ allGeneration[gen].getMinWeight());
+
 			}
 	
-			System.out.println(generationNum+" Generation Min Weight: "+ allGeneration[gen].getMinWeight());
-	
+				
 //			ShowData dataHist= new ShowData(allGeneration);
 			
 //			dataHist.showMinWeight();

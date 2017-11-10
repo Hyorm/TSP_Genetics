@@ -9,6 +9,10 @@ public class Evolution{
 
 	public static final int seq = 48;
 
+	public static final int co = 40;
+	public static final int mu = 10;
+	public static final int im = 50;
+
 	protected Generation oldGeneration = new Generation();
 
 	protected Generation nextGeneration = new Generation();
@@ -45,11 +49,13 @@ public class Evolution{
 
 	public Path[] getCross_over(){
 
-		Path path[] = new Path[40];
+		Path path[] = new Path[co];
 
-		for(int i = 0; i<40; i++){
+		for(int i = 0; i<co; i++){
 		
 			path[i] = makeCross_over();
+			if(path[i].getWeight()>this.oldGeneration.getMinWeight())
+				i--;
 
 		}
 		return path;
@@ -138,8 +144,8 @@ public class Evolution{
 
 	public Path[] getMutation(){
 
-		Path path[] = new Path[20];
-		for(int i = 0; i<20 ; i++){
+		Path path[] = new Path[mu];
+		for(int i = 0; i<mu ; i++){
 
 			path[i] = makeMutation();
 
@@ -154,7 +160,10 @@ public class Evolution{
 
 		int changeNode = (int)(Math.random()*47)+1;
 
-		Integer changePath = (int)(Math.random()*48);
+		Integer changePath = (int)(Math.random()*100);
+
+		if(changePath<10)
+			changeNode = (int)(Math.random()*9)+1;
 
 		Integer[] changeSequence = new Integer[changeNode];
 
@@ -214,11 +223,11 @@ public class Evolution{
 
 	public Path[] getImmigration(){
 
-		Path[] nextPath = new Path[40];
+		Path[] nextPath = new Path[im];
 		
 		HashSet<Integer[]> sequence = new HashSet<Integer[]>();
 
-		sequence = MakeSequence.makeSequence(40);
+		sequence = MakeSequence.makeSequence(im);
 	
 		int i = 0;	
 
